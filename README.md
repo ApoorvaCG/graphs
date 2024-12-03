@@ -7,10 +7,10 @@ Search functionality: Search graphs by node labels.
 Modal-based UI: Modals for creating graphs and confirming deletions.
 
 using MSW for mocking the backend API,
-if (process.env.NODE_ENV === "development") {
+```if (process.env.NODE_ENV === "development") {
   const { worker } = require("./mocks/browser");
   worker.start();
-}
+}```
 
 Run the Application,
 npm start
