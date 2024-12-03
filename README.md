@@ -4,9 +4,9 @@ This is a React-based application that allows users to create, view, and manage 
 
 Features,
 
-Search functionality: Search graphs by node labels.
-3D Graph visualization: Use react-force-graph-3d to render graphs interactively.
-Modal-based UI: Modals for creating graphs and confirming deletions.
+- Search functionality: Search graphs by node labels.
+- 3D Graph visualization: Use react-force-graph-3d to render graphs interactively.
+- Modal-based UI: Modals for creating graphs and confirming deletions.
 
 using MSW for mocking the backend API,\
 
