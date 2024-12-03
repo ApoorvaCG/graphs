@@ -16,7 +16,7 @@ const GraphList = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const navigate = useNavigate();
   const { data, loading, error } = useFetchData<Graph[]>();
-  const { deleteItem, deleteLoading, deleteError } = useDeleteGraph();
+  const { deleteItem, deleteLoading, deleteError, deleteMessage } = useDeleteGraph();
 
   useEffect(() => {
     const fetchGraphs = async () => {
@@ -94,8 +94,11 @@ const GraphList = () => {
         {!loading && !graphs.length && <p>No results found</p>}
         {!deleteLoading && deleteError && (
           <p style={{ color: "#cc0000" }}>
-            Error deleting the graph, try again!
+            {deleteMessage}
           </p>
+        )}
+        {!deleteLoading && !deleteError && (
+          <div style={{ padding: "10px", color: "green" }}>{deleteMessage}</div>
         )}
 
         <ul className="graph-list">
@@ -141,7 +144,7 @@ const GraphList = () => {
               <div style={{ fontSize: "24px", fontWeight: 600 }}>
                 Delete Graph
               </div>
-              <IoClose size={20} onClick={closeModal} cursor={"pointer"} />
+              <IoClose size={20} onClick={closeDeleteModal} cursor={"pointer"} />
             </div>
             <div style={{ fontSize: "14px", fontWeight: 400 }}>
               Are you sure, you want to delete this graph?

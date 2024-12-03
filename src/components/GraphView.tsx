@@ -57,7 +57,7 @@ const GraphView = () => {
         }}
       >
         <div
-          style={{ display: "flex", gap: 4, alignItems: "center" }}
+          style={{ display: "flex", gap: 4, alignItems: "center", cursor:'pointer' }}
           onClick={() => navigate("/")}
         >
           <IoArrowBack size={20} />

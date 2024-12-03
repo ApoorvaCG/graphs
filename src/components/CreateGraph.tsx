@@ -2,6 +2,7 @@ import React, { FC, FormEvent, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { Graph } from '../types';
 import { API_URL } from "../constants";
+import useShowMessage from "../hooks/useShowMessage";
 
 interface CreateGraphProps {
   onGraphCreated: (graph: Graph) => void;
@@ -12,6 +13,7 @@ const CreateGraph: FC<CreateGraphProps> = ({ onGraphCreated, closeModal }) =>  {
   const [name, setName] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { message, showMessage } = useShowMessage();
 
   const handleCreateGraph = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,6 +41,7 @@ const CreateGraph: FC<CreateGraphProps> = ({ onGraphCreated, closeModal }) =>  {
         const newGraph: Graph = await response.json();
         onGraphCreated(newGraph); 
         setName(""); 
+        showMessage('Graph created successfully!');
       } catch (err) {
         setError("Failed to create graph haii");
       } finally {
@@ -83,6 +86,11 @@ const CreateGraph: FC<CreateGraphProps> = ({ onGraphCreated, closeModal }) =>  {
           {isLoading ? "Creating..." : "Create"}
         </button>
       </form>
+      {message && (
+        <div style={{ padding: '10px',color: 'green' }}>
+          {message}
+        </div>
+      )}
     </>
   );
 };
